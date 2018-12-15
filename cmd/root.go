@@ -1,6 +1,7 @@
 package cmd
 
 import (
+  "log"
   "os"
   "os/exec"
   "github.com/spf13/cobra"
@@ -13,6 +14,7 @@ var RootCmd = &cobra.Command{
   Run: func(cmd *cobra.Command, args []string) {
     out, err := exec.Command("git", "config", "--get", "remote.origin.url").Output()
     if err != nil {
+      log.Print(err)
       os.Exit(1)
     }
     open.Run(string(out))
