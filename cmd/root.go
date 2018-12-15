@@ -17,6 +17,7 @@ var RootCmd = &cobra.Command{
       log.Print(err)
       os.Exit(1)
     }
-    open.Run(string(out))
+    url := string(out[:len(string(out)) - 5])
+    open.Run(url)
   },
 }
