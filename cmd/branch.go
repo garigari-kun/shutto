@@ -15,7 +15,7 @@ func init() {
 
 func branchCmd() *cobra.Command {
   cobra := &cobra.Command{
-    Use: "b",
+    Use: "br",
     Short: "Open a current branch github page",
     Run: func(cmd *cobra.Command, args []string) {
       url_out, err := exec.Command("git", "config", "--get", "remote.origin.url").Output()
