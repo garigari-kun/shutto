@@ -21,3 +21,10 @@ var RootCmd = &cobra.Command{
     open.Run(url)
   },
 }
+
+func Execute() {
+  if err := RootCmd.Execute(); err != nil {
+    log.Print(err)
+    os.Exit(1)
+  }
+}
