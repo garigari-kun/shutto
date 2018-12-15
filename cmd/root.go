@@ -1,10 +1,10 @@
 package cmd
 
 import (
-  "fmt"
   "os"
   "os/exec"
   "github.com/spf13/cobra"
+  "github.com/skratchdot/open-golang/open"
 )
 
 var RootCmd = &cobra.Command{
@@ -15,6 +15,6 @@ var RootCmd = &cobra.Command{
     if err != nil {
       os.Exit(1)
     }
-    fmt.Println(string(out))
+    open.Run(string(out))
   },
 }
