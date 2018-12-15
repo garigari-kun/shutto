@@ -4,7 +4,7 @@ import (
   "log"
   "os"
   "os/exec"
-  "strings"
+  "github.com/garigari-kun/shutto/helper"
   "github.com/spf13/cobra"
   "github.com/skratchdot/open-golang/open"
 )
@@ -23,20 +23,23 @@ func branchCmd() *cobra.Command {
         log.Print(err)
         os.Exit(1)
       }
+      url := helper.Urlify(url_out)
 
       branch_out, err := exec.Command("git", "symbolic-ref", "--short", "HEAD").Output()
       if err != nil {
         log.Print(err)
         os.Exit(1)
       }
-      if strings.TrimSpace(string(branch_out)) == "master" {
-        open.Run(string(url_out))
+      branch_name := helper.FormatBrachName(branch_out)
+
+      if branch_name == "master" {
+        open.Run(url)
       } else {
-        opening_url := string(url_out[:len(string(url_out)) - 5]) + "/tree/" + strings.TrimSpace(string(branch_out))
-        open.Run(string(opening_url))
+        opening_url := url + "/tree/" + branch_name
+        open.Run(opening_url)
       }
     },
   }
-
+  
   return cobra
 }
