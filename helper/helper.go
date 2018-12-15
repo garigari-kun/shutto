@@ -5,7 +5,8 @@ import (
 )
 
 func Urlify(url []byte) string {
-  return string(url[:len(string(url)) - 5])
+  url_string := strings.TrimSpace(string(url))
+  return url_string[:len(url_string) - 4]
 }
 
 func FormatBrachName(branch_name []byte) string {
