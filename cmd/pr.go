@@ -4,7 +4,7 @@ import (
   "log"
   "os"
   "os/exec"
-  "strings"
+  "github.com/garigari-kun/shutto/helper"
   "github.com/spf13/cobra"
   "github.com/skratchdot/open-golang/open"
 )
@@ -23,19 +23,21 @@ func prCmd() *cobra.Command {
         log.Print(err)
         os.Exit(1)
       }
+      url := helper.Urlify(url_out)
 
       branch_out, err := exec.Command("git", "symbolic-ref", "--short", "HEAD").Output()
       if err != nil {
         log.Print(err)
         os.Exit(1)
       }
+      branch_name := helper.FormatBrachName(branch_out)
 
-      if strings.TrimSpace(string(branch_out)) == "master" {
+      if branch_name == "master" {
         log.Print("It's master branch. No PR existed")
         os.Exit(1)
       } else {
-        opening_url := string(url_out[:len(string(url_out)) - 5]) + "/pull/" + strings.TrimSpace(string(branch_out))
-        open.Run(string(opening_url))
+        opening_url := url + "/pull/" + branch_name
+        open.Run(opening_url)
       }
 
     },
