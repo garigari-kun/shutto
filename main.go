@@ -1,14 +1,14 @@
 package main
 
 import (
-  "fmt"
+  "log"
   "os"
   "github.com/garigari-kun/shutto/cmd"
 )
 
 func main() {
   if err := cmd.RootCmd.Execute(); err != nil {
-    fmt.Println(err)
+    log.Print(err)
     os.Exit(1)
   }
 }
