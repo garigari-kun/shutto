@@ -4,7 +4,7 @@ Open a github repository page from your lovely terminal.
 
 # How to install
 ```sh
-$ go get github.com/garigari-kun/shutto
+$ go get -u github.com/garigari-kun/shutto
 ```
 
 # How to Use
