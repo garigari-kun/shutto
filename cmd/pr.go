@@ -9,10 +9,6 @@ import (
   "github.com/skratchdot/open-golang/open"
 )
 
-func init() {
-  RootCmd.AddCommand(prCmd())
-}
-
 func prCmd() *cobra.Command {
   cobra := &cobra.Command{
     Use: "pr",
