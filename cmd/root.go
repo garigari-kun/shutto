@@ -9,24 +9,31 @@ import (
   "github.com/skratchdot/open-golang/open"
 )
 
-var RootCmd = &cobra.Command{
-  Use: "shutto",
-  Short: "Open a github repository page",
-  Run: func(cmd *cobra.Command, args []string) {
-    out, err := exec.Command("git", "config", "--get", "remote.origin.url").Output()
+func RootCmd() *cobra.Command {
+  cmd := &cobra.Command {
+    Use: "shutto",
+    Short: "Open a github repository page",
+    Run: func(cmd *cobra.Command, args []string) {
+     out, err := exec.Command("git", "config", "--get", "remote.origin.url").Output()
 
-    if err != nil {
-      log.Print(err)
-      os.Exit(1)
-    }
+     if err != nil {
+       log.Print(err)
+       os.Exit(1)
+     }
 
-    url := helper.Urlify(out)
-    open.Run(url)
-  },
+     url := helper.Urlify(out)
+     open.Run(url)
+    },
+ }
+
+ cmd.AddCommand(branchCmd())
+ cmd.AddCommand(prCmd())
+ return cmd
 }
 
 func Execute() {
-  if err := RootCmd.Execute(); err != nil {
+  cmd := RootCmd()
+  if err := cmd.Execute(); err != nil {
     log.Print(err)
     os.Exit(1)
   }

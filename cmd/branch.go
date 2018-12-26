@@ -9,10 +9,6 @@ import (
   "github.com/skratchdot/open-golang/open"
 )
 
-func init() {
-  RootCmd.AddCommand(branchCmd())
-}
-
 func branchCmd() *cobra.Command {
   cobra := &cobra.Command{
     Use: "br",
@@ -40,6 +36,6 @@ func branchCmd() *cobra.Command {
       }
     },
   }
-  
+
   return cobra
 }
