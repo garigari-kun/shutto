@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/garigari-kun/shutto/tree/master.svg?style=svg)](https://circleci.com/gh/garigari-kun/shutto/tree/master)
 # shutto
 
 Open a github repository page from your lovely terminal.
