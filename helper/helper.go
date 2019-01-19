@@ -16,7 +16,12 @@ func Urlify(url []byte) string {
     trailing_path := url_parts[1]
     return "https://" + url_parts[0] + "/" + trailing_path[:len(trailing_path) - 4]
   }
-  return url_string[:len(url_string) - 4]
+
+  if strings.Contains(url_string, ".git") {
+    return url_string[:len(url_string) - 4]
+  } else {
+    return url_string
+  }
 
 }
 

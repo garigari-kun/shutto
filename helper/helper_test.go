@@ -26,6 +26,14 @@ func TestUrlify(t *testing.T) {
   if urlified_git != expected {
     t.Fatal("Failed")
   }
+
+  // https://github.com/garigari-kun/shutto
+  test_string := "https://github.com/garigari-kun/shutto"
+  test_bytes_url := []byte(test_string)
+  urlified_url := Urlify(test_bytes_url)
+  if urlified_url != expected {
+    t.Fatal("Failed")
+  }
 }
 
 func TestFormatBranchName(t *testing.T) {
